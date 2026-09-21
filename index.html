@@ -15,19 +15,24 @@
         .header h1 { color: #222; margin: 0 0 5px 0; font-size: 24px; letter-spacing: 1px; }
         .header p { color: #666; font-size: 14px; margin: 0; }
 
-        /* تنسيق متناسق ومضبوط لفيديو تيك توك */
+        /* حاوية تحكم صارمة بحجم وارتفاع فيديو تيك توك لمنع تمدده */
         .tiktok-section { 
-            max-width: 340px; 
+            max-width: 380px; 
+            height: 380px; /* تحديد ارتفاع ثابت ومناسب */
             margin: 0 auto 25px auto; 
-            text-align: center; 
             background: #fff; 
-            padding: 12px; 
+            padding: 5px; 
             border-radius: 14px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-            border: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
+            border: 1px solid #d4af37;
+            overflow: hidden; /* إخفاء أي أجزاء زائدة */
+            position: relative;
+        }
+
+        .tiktok-section iframe, .tiktok-section blockquote {
+            transform: scale(0.85); /* تصغير حجم عرض الفيديو قليلاً ليتناسب تماماً مع الإطار */
+            transform-origin: top center;
+            margin: 0 auto !important;
         }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
@@ -74,8 +79,9 @@
         <p>تصفح منتجاتنا واطلبها مباشرة عبر واتساب</p>
     </div>
 
+    <!-- قسم تيك توك بحجم مرتب ومضبوط -->
     <div class="tiktok-section">
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@topgivingsa/video/7668357906089200916" data-video-id="7668357906089200916" style="max-width: 320px; min-width: 280px;" >
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@topgivingsa/video/7668357906089200916" data-video-id="7668357906089200916" style="max-width: 325px; min-width: 280px;" >
             <section> </section>
         </blockquote>
         <script async src="https://www.tiktok.com/embed.js"></script>
@@ -83,6 +89,7 @@
 
     <div class="grid">
         
+        <!-- المنتج الأول -->
         <div class="card">
             <div class="slider-container" id="slider-1">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">2</span></div>
@@ -119,6 +126,7 @@
             <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ريال', 1, 'size-1')">اطلب عبر واتساب</a>
         </div>
 
+        <!-- المنتج الثاني (Brave) -->
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
