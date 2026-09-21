@@ -26,6 +26,12 @@
         .card-content { padding: 15px; text-align: right; }
         .card-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #111; }
         .card-price { color: #2e7d32; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
+        
+        /* تنسيق اختيار المقاس */
+        .size-selector { margin-bottom: 15px; }
+        .size-selector label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #444; }
+        .size-selector select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background-color: #fff; cursor: pointer; }
+
         .btn { display: block; text-align: center; background-color: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 0 0 12px 12px; font-weight: bold; font-size: 15px; }
         .btn:hover { background-color: #20ba5a; }
     </style>
@@ -38,15 +44,11 @@
     </div>
 
     <div class="grid">
-        <!-- المنتج مع صور متعددة -->
+        <!-- المنتج مع خيار المقاس -->
         <div class="card">
             <div class="slider-container">
-                <!-- الصورة الأولى (الأمامية) -->
                 <img src="0051.png" class="slide active" alt="الوجه الأمامي">
-                <!-- الصورة الثانية (الخلفية) -->
                 <img src="new tshirt 01.png" class="slide" alt="الوجه الخلفي">
-                
-                <!-- أزرار التنقل -->
                 <button class="prev" onclick="changeSlide(1)">&#10095;</button>
                 <button class="next" onclick="changeSlide(-1)">&#10094;</button>
             </div>
@@ -54,12 +56,26 @@
             <div class="card-content">
                 <div class="card-title">تيشيرت رجالي أوفر سايز</div>
                 <div class="card-price">85 ريال</div>
+                
+                <!-- قائمة اختيار المقاس -->
+                <div class="size-selector">
+                    <label for="size-select">اختر المقاس:</label>
+                    <select id="size-select">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L" selected>L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
             </div>
-            <a href="https://wa.me/966560564719?text=أريد%20طلب%20تيشيرت%20رجالي%20أوفر%20سايز" class="btn">اطلب عبر واتساب</a>
+
+            <a href="#" id="whatsapp-btn" class="btn" onclick="sendOrder(event)">اطلب عبر واتساب</a>
         </div>
     </div>
 
     <script>
+        // تنقل الصور
         let currentSlide = 0;
         function changeSlide(direction) {
             const slides = document.querySelectorAll('.slide');
@@ -70,6 +86,17 @@
                 slide.classList.remove('active');
                 if (index === currentSlide) { slide.classList.add('active'); }
             });
+        }
+
+        // إرسال الطلب مع المقاس المختار إلى واتساب
+        function sendOrder(event) {
+            event.preventDefault();
+            const sizeSelect = document.getElementById('size-select');
+            const selectedSize = sizeSelect.value;
+            const phone = "966560564719";
+            const message = `أريد طلب تيشيرت رجالي أوفر سايز - المقاس: ${selectedSize} - السعر: 85 ريال`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
     </script>
 
