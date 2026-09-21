@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كتالوج المنتجات</title>
+    <title>كتالوج المنتجات - Top Giving</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; color: #333; }
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { color: #222; margin-bottom: 5px; }
-        .header p { color: #666; font-size: 14px; }
+        
+        /* رأس الصفحة والشعار */
+        .header { text-align: center; margin-bottom: 25px; }
+        .header img.logo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 10px; border: 2px solid #d4af37; }
+        .header h1 { color: #222; margin: 0 0 5px 0; font-size: 22px; }
+        .header p { color: #666; font-size: 14px; margin: 0; }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
         .card { background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
         
@@ -41,8 +45,10 @@
 </head>
 <body>
 
+    <!-- رأس الصفحة مع الشعار -->
     <div class="header">
-        <h1>متجرنا الرقمي</h1>
+        <img src="120109.jpg" alt="شعار المتجر" class="logo">
+        <h1>TOP GIVING</h1>
         <p>تصفح منتجاتنا واطلبها مباشرة عبر واتساب</p>
     </div>
 
@@ -52,11 +58,9 @@
             <div class="slider-container">
                 <div class="slide-counter"><span id="current-num">1</span> / <span id="total-num">2</span></div>
                 
-                <!-- صور المنتج (الأمامية، الخلفية، وأي صور ألوان إضافية ترفعها لاحقاً) -->
+                <!-- صور المنتج (الأمامية والخلفية) -->
                 <img src="0051.png" class="slide active" alt="الوجه الأمامي">
                 <img src="new tshirt 01.png" class="slide" alt="الوجه الخلفي">
-                <!-- إذا أضفت صورة لون جديد مستقبلاً، ضعها هنا بنفس الطريقة: -->
-                <!-- <img src="color_black.png" class="slide" alt="اللون الأسود"> -->
 
                 <button class="prev" onclick="changeSlide(1)">&#10095;</button>
                 <button class="next" onclick="changeSlide(-1)">&#10094;</button>
@@ -84,7 +88,7 @@
     </div>
 
     <script>
-        // نظام معرض الصور التفاعلي (يعمل تلقائياً مع عدد الصور الموجودة)
+        // نظام معرض الصور التفاعلي
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         document.getElementById('total-num').innerText = slides.length;
