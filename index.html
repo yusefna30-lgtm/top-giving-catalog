@@ -5,80 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>كتالوج المنتجات - Top Giving</title>
     <style>
-        /* الثيم الفاخر المستوحى من تصميمك */
+        /* الثيم الداكن الفاخر */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #0b0b0b; /* خلفية داكنة فخمة */
+            background-color: #0b0b0b; 
             margin: 0; 
             padding: 20px; 
             color: #f1f1f1; 
         }
         
         .header { text-align: center; margin-bottom: 25px; }
-        .logo-container { width: 120px; height: 120px; margin: 0 auto 12px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(212,175,55,0.3); border: 2px solid #d4af37; background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; }
+        .logo-container { width: 110px; height: 110px; margin: 0 auto 12px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(212,175,55,0.3); border: 2px solid #d4af37; background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; }
         .header img.logo { width: 100%; height: 100%; object-fit: cover; }
-        .logo-fallback { font-size: 30px; font-weight: bold; color: #d4af37; letter-spacing: 2px; display: none; }
+        .logo-fallback { font-size: 28px; font-weight: bold; color: #d4af37; letter-spacing: 2px; display: none; }
         
-        .header h1 { color: #ffffff; margin: 0 0 5px 0; font-size: 24px; letter-spacing: 1.5px; font-weight: 700; }
-        .header p { color: #aaa; font-size: 13px; margin: 0; letter-spacing: 0.5px; }
+        .header h1 { color: #ffffff; margin: 0 0 5px 0; font-size: 22px; letter-spacing: 1.5px; font-weight: 700; }
+        .header p { color: #aaa; font-size: 13px; margin: 0; }
 
-        /* حاوية فيديو تيك توك مدمجة ومرتبة بالثيم الداكن */
-        .tiktok-section { 
-            max-width: 320px; 
-            height: 340px; 
-            margin: 0 auto 30px auto; 
-            text-align: center; 
-            background: #141414; 
-            padding: 8px; 
-            border-radius: 16px; 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.6); 
-            border: 1px solid #333;
-            overflow: hidden; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .tiktok-section blockquote {
-            transform: scale(0.80);
-            transform-origin: center;
-            margin: 0 auto !important;
-        }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 950px; margin: auto; }
+        /* شبكة المنتجات بإطارات أصغر وأنيقة */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; max-width: 900px; margin: auto; }
         
-        /* بطاقات المنتجات بالثيم الداكن الفاخر */
-        .card { background: #161616; border: 1px solid #262626; border-radius: 14px; box-shadow: 0 6px 15px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
+        .card { background: #161616; border: 1px solid #262626; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
         .card:hover { border-color: #d4af37; }
         
-        .slider-container { position: relative; width: 100%; height: 350px; background-color: #111; overflow: hidden; }
+        /* تقليص ارتفاع معرض الصور لتكون أصغر حجماً ومنسقة */
+        .slider-container { position: relative; width: 100%; height: 260px; background-color: #111; overflow: hidden; }
         .slide { display: none; width: 100%; height: 100%; object-fit: contain; }
         .slide.active { display: block; }
         
-        .slide-counter { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 3px 8px; font-size: 11px; border-radius: 20px; z-index: 10; border: 1px solid #444; }
+        .slide-counter { position: absolute; top: 8px; left: 8px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 2px 6px; font-size: 10px; border-radius: 20px; z-index: 10; border: 1px solid #444; }
 
-        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.6); color: white; border: none; padding: 8px 12px; cursor: pointer; font-size: 16px; border-radius: 50%; transition: 0.2s; z-index: 10; }
+        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.6); color: white; border: none; padding: 6px 10px; cursor: pointer; font-size: 14px; border-radius: 50%; transition: 0.2s; z-index: 10; }
         .prev:hover, .next:hover { background-color: #d4af37; color: #000; }
-        .prev { right: 10px; }
-        .next { left: 10px; }
+        .prev { right: 8px; }
+        .next { left: 8px; }
 
-        .card-content { padding: 16px; text-align: right; }
-        .card-title { font-size: 17px; font-weight: bold; margin-bottom: 8px; color: #fff; }
-        .card-price { color: #4cd137; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
+        .card-content { padding: 12px; text-align: right; }
+        .card-title { font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #fff; }
+        .card-price { color: #00e5ff; font-weight: bold; font-size: 15px; margin-bottom: 10px; }
         
-        .color-selector { margin-bottom: 12px; }
-        .color-selector label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 6px; color: #bbb; }
-        .color-options { display: flex; gap: 10px; }
-        .color-btn { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #444; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+        .color-selector { margin-bottom: 10px; }
+        .color-selector label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #bbb; }
+        .color-options { display: flex; gap: 8px; }
+        .color-btn { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #444; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
         .color-btn:hover { transform: scale(1.1); }
-        .color-btn.selected { border-color: #d4af37; transform: scale(1.1); box-shadow: 0 0 8px rgba(212,175,55,0.6); }
+        .color-btn.selected { border-color: #00e5ff; transform: scale(1.1); box-shadow: 0 0 6px rgba(0,229,255,0.6); }
 
-        .size-selector { margin-bottom: 15px; }
-        .size-selector label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #bbb; }
-        .size-selector select { width: 100%; padding: 10px; border: 1px solid #333; border-radius: 6px; font-size: 14px; background-color: #222; color: #fff; cursor: pointer; }
+        .size-selector { margin-bottom: 12px; }
+        .size-selector label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #bbb; }
+        .size-selector select { width: 100%; padding: 8px; border: 1px solid #333; border-radius: 6px; font-size: 13px; background-color: #222; color: #fff; cursor: pointer; }
 
-        .btn { display: block; text-align: center; background-color: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 0 0 14px 14px; font-weight: bold; font-size: 15px; transition: 0.2s; }
-        .btn:hover { background-color: #20ba5a; }
+        .btn { display: block; text-align: center; background-color: #00bcd4; color: #000; padding: 10px; text-decoration: none; border-radius: 0 0 12px 12px; font-weight: bold; font-size: 14px; transition: 0.2s; }
+        .btn:hover { background-color: #00acc1; color: #fff; }
     </style>
 </head>
 <body>
@@ -92,15 +70,9 @@
         <p>تصفح منتجاتنا واطلبها مباشرة عبر واتساب</p>
     </div>
 
-    <div class="tiktok-section">
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@topgivingsa/video/7668357906089200916" data-video-id="7668357906089200916" style="max-width: 320px; min-width: 270px;" >
-            <section> </section>
-        </blockquote>
-        <script async src="https://www.tiktok.com/embed.js"></script>
-    </div>
-
     <div class="grid">
         
+        <!-- المنتج الأول -->
         <div class="card">
             <div class="slider-container" id="slider-1">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">2</span></div>
@@ -112,7 +84,7 @@
 
             <div class="card-content">
                 <div class="card-title">تيشيرت رجالي أوفر سايز</div>
-                <div class="card-price">85 ريال</div>
+                <div class="card-price">85 ر.س</div>
 
                 <div class="color-selector">
                     <label>اختر اللون:</label>
@@ -134,9 +106,10 @@
                 </div>
             </div>
 
-            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ريال', 1, 'size-1')">اطلب عبر واتساب</a>
+            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ر.س', 1, 'size-1')">أضف للسلة (واتساب)</a>
         </div>
 
+        <!-- المنتج الثاني (Brave) -->
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
@@ -149,8 +122,8 @@
             </div>
 
             <div class="card-content">
-                <div class="card-title">تيشيرت رجالي أوفر سايز (Brave)</div>
-                <div class="card-price">69 ريال</div>
+                <div class="card-title">PERSIST - Brave</div>
+                <div class="card-price">69 ر.س</div>
 
                 <div class="color-selector">
                     <label>اختر اللون:</label>
@@ -172,7 +145,7 @@
                 </div>
             </div>
 
-            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (Brave)', '69 ريال', 2, 'size-2')">اطلب عبر واتساب</a>
+            <a href="#" class="btn" onclick="sendOrder(event, 'تیشيرت رجالي أوفر سايز (Brave)', '69 ر.س', 2, 'size-2')">أضف للسلة (واتساب)</a>
         </div>
 
     </div>
