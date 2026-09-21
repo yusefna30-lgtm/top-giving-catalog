@@ -7,7 +7,6 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; color: #333; }
         
-        /* رأس الصفحة والشعار */
         .header { text-align: center; margin-bottom: 20px; }
         .logo-container { width: 130px; height: 130px; margin: 0 auto 12px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 3px solid #d4af37; background-color: #111; display: flex; align-items: center; justify-content: center; }
         .header img.logo { width: 100%; height: 100%; object-fit: cover; }
@@ -16,7 +15,6 @@
         .header h1 { color: #222; margin: 0 0 5px 0; font-size: 24px; letter-spacing: 1px; }
         .header p { color: #666; font-size: 14px; margin: 0; }
 
-        /* قسم الفيديو الإعلاني السينمائي */
         .promo-video-section { max-width: 1000px; margin: 0 auto 25px auto; background: #111; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.15); border: 1px solid #d4af37; }
         .promo-video-container { position: relative; width: 100%; height: 380px; background: #000; }
         .promo-video-container video { width: 100%; height: 100%; object-fit: cover; }
@@ -25,15 +23,12 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
         .card { background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
         
-        /* تصميم معرض الصور لكل كارد مستقل */
         .slider-container { position: relative; width: 100%; height: 380px; background-color: #fff; overflow: hidden; }
         .slide { display: none; width: 100%; height: 100%; object-fit: contain; }
         .slide.active { display: block; }
         
-        /* مؤشر رقم الصورة داخل المعرض */
         .slide-counter { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.6); color: white; padding: 3px 8px; font-size: 12px; border-radius: 20px; z-index: 10; }
 
-        /* أزرار التنقل يمين ويسار */
         .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; font-size: 18px; border-radius: 50%; transition: 0.2s; z-index: 10; }
         .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
         .prev { right: 10px; }
@@ -43,7 +38,6 @@
         .card-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #111; }
         .card-price { color: #2e7d32; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
         
-        /* تنسيق اختيار الألوان */
         .color-selector { margin-bottom: 12px; }
         .color-selector label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 6px; color: #444; }
         .color-options { display: flex; gap: 10px; }
@@ -51,7 +45,6 @@
         .color-btn:hover { transform: scale(1.1); }
         .color-btn.selected { border-color: #25d366; transform: scale(1.1); box-shadow: 0 0 5px rgba(37,211,102,0.5); }
 
-        /* تنسيق اختيار المقاس */
         .size-selector { margin-bottom: 15px; }
         .size-selector label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #444; }
         .size-selector select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background-color: #fff; cursor: pointer; }
