@@ -37,6 +37,14 @@
         .card-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #111; }
         .card-price { color: #2e7d32; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
         
+        /* تنسيق اختيار الألوان */
+        .color-selector { margin-bottom: 12px; }
+        .color-selector label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 6px; color: #444; }
+        .color-options { display: flex; gap: 10px; }
+        .color-btn { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #ddd; cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+        .color-btn:hover { transform: scale(1.1); }
+        .color-btn.selected { border-color: #25d366; transform: scale(1.1); box-shadow: 0 0 5px rgba(37,211,102,0.5); }
+
         /* تنسيق اختيار المقاس */
         .size-selector { margin-bottom: 15px; }
         .size-selector label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #444; }
@@ -60,7 +68,7 @@
 
     <div class="grid">
         
-        <!-- المنتج الأول (السابق) -->
+        <!-- المنتج الأول -->
         <div class="card">
             <div class="slider-container" id="slider-1">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">2</span></div>
@@ -73,6 +81,15 @@
             <div class="card-content">
                 <div class="card-title">تيشيرت رجالي أوفر سايز</div>
                 <div class="card-price">85 ريال</div>
+
+                <!-- أزرار اختيار اللون للمنتج الأول -->
+                <div class="color-selector">
+                    <label>اختر اللون:</label>
+                    <div class="color-options" id="colors-1">
+                        <button class="color-btn selected" style="background-color: #ffffff;" onclick="selectColor(1, 0, 'أبيض', this)" title="أبيض"></button>
+                        <button class="color-btn" style="background-color: #111111;" onclick="selectColor(1, 1, 'أسود', this)" title="أسود"></button>
+                    </div>
+                </div>
                 
                 <div class="size-selector">
                     <label for="size-1">اختر المقاس:</label>
@@ -86,10 +103,10 @@
                 </div>
             </div>
 
-            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ريال', 'size-1')">اطلب عبر واتساب</a>
+            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ريال', 1, 'size-1')">اطلب عبر واتساب</a>
         </div>
 
-        <!-- المنتج الجديد (Tshirt001, 002, 003) -->
+        <!-- المنتج الثاني (بـ 3 صور و69 ريال) -->
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
@@ -103,6 +120,19 @@
             <div class="card-content">
                 <div class="card-title">تيشيرت رجالي أوفر سايز</div>
                 <div class="card-price">69 ريال</div>
+
+                <!-- أزرار اختيار اللون للمنتج الثاني (ترتبط بالصور الثلاث مباشرة) -->
+                <div class="color-selector">
+                    <label>اختر اللون:</label>
+                    <div class="color-options" id="colors-2">
+                        <!-- اللون الأول يرتبط بالصورة رقم 0 (Tshirt001.png) -->
+                        <button class="color-btn selected" style="background-color: #ffffff;" onclick="selectColor(2, 0, 'أبيض', this)" title="أبيض"></button>
+                        <!-- اللون الثاني يرتبط بالصورة رقم 1 (Tshirt002.png) -->
+                        <button class="color-btn" style="background-color: #111111;" onclick="selectColor(2, 1, 'أسود', this)" title="أسود"></button>
+                        <!-- اللون الثالث يرتبط بالصورة رقم 2 (Tshirt003.png) - يمكنك تعديل الكود اللونى حسب لون التيشيرت الحقيقي -->
+                        <button class="color-btn" style="background-color: #8B4513;" onclick="selectColor(2, 2, 'بني', this)" title="بني"></button>
+                    </div>
+                </div>
                 
                 <div class="size-selector">
                     <label for="size-2">اختر المقاس:</label>
@@ -115,16 +145,15 @@
                 </div>
             </div>
 
-            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز', '69 ريال', 'size-2')">اطلب عبر واتساب</a>
+            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز', '69 ريال', 2, 'size-2')">اطلب عبر واتساب</a>
         </div>
 
     </div>
 
     <script>
-        // مصفوفة لتتبع رقم الصورة الحالية لكل منتج
         const currentSlides = { 1: 0, 2: 0 };
+        const selectedCardColors = { 1: 'أبيض', 2: 'أبيض' };
 
-        // تهيئة العدادات عند تحميل الصفحة
         window.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.slider-container').forEach((slider, index) => {
                 const sliderId = index + 1;
@@ -133,28 +162,43 @@
             });
         });
 
-        // نظام معرض الصور التفاعلي لكل منتج بشكل مستقل
-        function changeSlide(sliderId, direction) {
+        function showSlide(sliderId, index) {
             const slider = document.getElementById(`slider-${sliderId}`);
             const slides = slider.querySelectorAll('.slide');
-            
             slides[currentSlides[sliderId]].classList.remove('active');
             
-            currentSlides[sliderId] += direction;
-            if (currentSlides[sliderId] >= slides.length) { currentSlides[sliderId] = 0; }
-            if (currentSlides[sliderId] < 0) { currentSlides[sliderId] = slides.length - 1; }
+            currentSlides[sliderId] = index;
+            if (currentSlides[sliderId] >= slides.length) currentSlides[sliderId] = 0;
+            if (currentSlides[sliderId] < 0) currentSlides[sliderId] = slides.length - 1;
             
             slides[currentSlides[sliderId]].classList.add('active');
             slider.querySelector('.current-num').innerText = currentSlides[sliderId] + 1;
         }
 
-        // إرسال الطلب عبر واتساب مع تفاصيل المنتج والمقاس
+        function changeSlide(sliderId, direction) {
+            showSlide(sliderId, currentSlides[sliderId] + direction);
+        }
+
+        // اختيار اللون وتغيير الصورة وتحديد اسم اللون
+        function selectColor(sliderId, slideIndex, colorName, buttonElement) {
+            showSlide(sliderId, slideIndex);
+            selectedCardColors[sliderId] = colorName;
+            
+            // تحديث شكل الأزرار المحددة ضمن هذا المنتج فقط
+            const colorContainer = document.getElementById(`colors-${sliderId}`);
+            colorContainer.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
+            buttonElement.classList.add('selected');
+        }
+
+        // إرسال الطلب مع اللون والمقاس عبر واتساب
         let phone = "966560564719";
-        function sendOrder(event, productName, price, sizeElementId) {
+        function sendOrder(event, productName, price, sliderId, sizeElementId) {
             event.preventDefault();
             const sizeSelect = document.getElementById(sizeElementId);
             const selectedSize = sizeSelect.value;
-            const message = `أريد طلب ${productName}\n- المقاس: ${selectedSize}\n- السعر: ${price}`;
+            const selectedColor = selectedCardColors[sliderId];
+
+            const message = `أريد طلب ${productName}\n- اللون: ${selectedColor}\n- المقاس: ${selectedSize}\n- السعر: ${price}`;
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
