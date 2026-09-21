@@ -18,7 +18,7 @@
         .slide.active { display: block; }
         
         /* مؤشر رقم الصورة داخل المعرض */
-        .slide-counter { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.6); color: white; padding: 3px 8px; font-size: 12px; border-radius: 20px; }
+        .slide-counter { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.6); color: white; padding: 3px 8px; font-size: 12px; border-radius: 20px; z-index: 10; }
 
         /* أزرار التنقل يمين ويسار */
         .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; font-size: 18px; border-radius: 50%; transition: 0.2s; z-index: 10; }
@@ -50,12 +50,12 @@
         <!-- المنتج مع المعرض والمقاس -->
         <div class="card">
             <div class="slider-container">
-                <div class="slide-counter"><span id="current-num">1</span> / <span id="total-num">3</span></div>
+                <div class="slide-counter"><span id="current-num">1</span> / <span id="total-num">2</span></div>
                 
-                <!-- صور المنتج (الأمام، الخلف، الألوان المختلفة) -->
+                <!-- صور المنتج (الأمامية، الخلفية، وأي صور ألوان إضافية ترفعها لاحقاً) -->
                 <img src="0051.png" class="slide active" alt="الوجه الأمامي">
                 <img src="new tshirt 01.png" class="slide" alt="الوجه الخلفي">
-                <!-- يمكنك إضافة صور الألوان الجديدة هنا بنفس الطريقة -->
+                <!-- إذا أضفت صورة لون جديد مستقبلاً، ضعها هنا بنفس الطريقة: -->
                 <!-- <img src="color_black.png" class="slide" alt="اللون الأسود"> -->
 
                 <button class="prev" onclick="changeSlide(1)">&#10095;</button>
@@ -84,7 +84,7 @@
     </div>
 
     <script>
-        // نظام معرض الصور التفاعلي
+        // نظام معرض الصور التفاعلي (يعمل تلقائياً مع عدد الصور الموجودة)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         document.getElementById('total-num').innerText = slides.length;
