@@ -9,7 +9,11 @@
         
         /* رأس الصفحة والشعار */
         .header { text-align: center; margin-bottom: 25px; }
-        .header img.logo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 10px; border: 2px solid #d4af37; }
+        .logo-container { width: 90px; height: 90px; margin: 0 auto 10px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.15); border: 2px solid #d4af37; background-color: #111; display: flex; align-items: center; justify-content: center; }
+        .header img.logo { width: 100%; height: 100%; object-fit: cover; }
+        /* الشعار البديل في حال لم تظهر الصورة */
+        .logo-fallback { font-size: 24px; font-weight: bold; color: #d4af37; letter-spacing: 2px; display: none; }
+        
         .header h1 { color: #222; margin: 0 0 5px 0; font-size: 22px; }
         .header p { color: #666; font-size: 14px; margin: 0; }
 
@@ -47,7 +51,10 @@
 
     <!-- رأس الصفحة مع الشعار -->
     <div class="header">
-        <img src="120109.jpg" alt="شعار المتجر" class="logo">
+        <div class="logo-container">
+            <img src="120109.jpg" alt="شعار المتجر" class="logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
+            <span id="fallback-logo" class="logo-fallback">TG</span>
+        </div>
         <h1>TOP GIVING</h1>
         <p>تصفح منتجاتنا واطلبها مباشرة عبر واتساب</p>
     </div>
