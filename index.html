@@ -105,13 +105,17 @@
             <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ريال', 1, 'size-1')">اطلب عبر واتساب</a>
         </div>
 
-        <!-- المنتج الثاني (ترتيب الألوان وتصحيح ألوان الأزرار: أسود، بيج، رمادي) -->
+        <!-- المنتج الثاني (ترتيب الألوان الصحيح: أسود -> رمادي -> بيج) -->
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
+                <!-- الصورة 0: أسود -->
                 <img src="Tshirt001.png" class="slide active" alt="أسود">
-                <img src="Tshirt002.png" class="slide" alt="بيج">
-                <img src="Tshirt003.png" class="slide" alt="رمادي">
+                <!-- الصورة 1: رمادي (Tshirt002.png) -->
+                <img src="Tshirt002.png" class="slide" alt="رمادي">
+                <!-- الصورة 2: بيج (Tshirt003.png) -->
+                <img src="Tshirt003.png" class="slide" alt="بيج">
+                
                 <button class="prev" onclick="changeSlide(2, -1)">&#10095;</button>
                 <button class="next" onclick="changeSlide(2, 1)">&#10094;</button>
             </div>
@@ -120,16 +124,16 @@
                 <div class="card-title">تيشيرت رجالي أوفر سايز (Brave)</div>
                 <div class="card-price">69 ريال</div>
 
-                <!-- أزرار الألوان بدقة: أسود، بيج دافئ، رمادي فاتح -->
+                <!-- أزرار الألوان (أسود، ثم رمادي، ثم بيج بترتيب الصور الصحيح) -->
                 <div class="color-selector">
                     <label>اختر اللون:</label>
                     <div class="color-options" id="colors-2">
-                        <!-- الزر الأول: أسود -->
+                        <!-- زر الأسود (الصورة 0) -->
                         <button class="color-btn selected" style="background-color: #1a1a1a;" onclick="selectColor(2, 0, 'أسود', this)" title="أسود"></button>
-                        <!-- الزر الثاني: بيج دافئ (C4B29E) -->
-                        <button class="color-btn" style="background-color: #C4B29E;" onclick="selectColor(2, 1, 'بيج', this)" title="بيج"></button>
-                        <!-- الزر الثالث: رمادي فاتح (B5B9BC) -->
-                        <button class="color-btn" style="background-color: #B5B9BC;" onclick="selectColor(2, 2, 'رمادي', this)" title="رمادي"></button>
+                        <!-- زر الرمادي (الصورة 1) -->
+                        <button class="color-btn" style="background-color: #B5B9BC;" onclick="selectColor(2, 1, 'رمادي', this)" title="رمادي"></button>
+                        <!-- زر البيج (الصورة 2) -->
+                        <button class="color-btn" style="background-color: #C4B29E;" onclick="selectColor(2, 2, 'بيج', this)" title="بيج"></button>
                     </div>
                 </div>
                 
