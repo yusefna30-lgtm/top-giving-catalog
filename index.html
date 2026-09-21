@@ -49,10 +49,10 @@
 </head>
 <body>
 
-    <!-- رأس الصفحة مع الشعار -->
+    <!-- رأس الصفحة مع الشعار logo.png -->
     <div class="header">
         <div class="logo-container">
-            <img src="120109.jpg" alt="شعار المتجر" class="logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
+            <img src="logo.png" alt="شعار المتجر" class="logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
             <span id="fallback-logo" class="logo-fallback">TG</span>
         </div>
         <h1>TOP GIVING</h1>
@@ -110,11 +110,11 @@
         }
 
         // إرسال الطلب مع المقاس المختار إلى واتساب
+        let phone = "966560564719";
         function sendOrder(event) {
             event.preventDefault();
             const sizeSelect = document.getElementById('size-select');
             const selectedSize = sizeSelect.value;
-            const phone = "966560564719";
             const message = `أريد طلب تيشيرت رجالي أوفر سايز - المقاس: ${selectedSize} - السعر: 85 ريال`;
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
