@@ -5,53 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>كتالوج المنتجات - Top Giving</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7f7f7; margin: 0; padding: 20px; color: #333; }
         
         /* رأس الصفحة والشعار */
-        .header { text-align: center; margin-bottom: 25px; }
-        .logo-container { width: 90px; height: 90px; margin: 0 auto 10px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.15); border: 2px solid #d4af37; background-color: #000; display: flex; align-items: center; justify-content: center; }
-        
-        /* تكبير الشعار نفسه ليملأ الإطار الدائري بوضوح */
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo-container { width: 90px; height: 90px; margin: 0 auto 12px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 2px solid #d4af37; background-color: #000; display: flex; align-items: center; justify-content: center; }
         .header img.logo { width: 130%; height: 130%; object-fit: cover; object-position: center; }
-        
         .logo-fallback { font-size: 24px; font-weight: bold; color: #d4af37; letter-spacing: 2px; display: none; }
         
-        .header h1 { color: #222; margin: 0 0 5px 0; font-size: 22px; }
+        .header h1 { color: #111; margin: 0 0 5px 0; font-size: 24px; letter-spacing: 1px; }
         .header p { color: #666; font-size: 14px; margin: 0; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
-        .card { background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; max-width: 900px; margin: auto; }
+        
+        /* تصميم بطاقة المنتج الفاخرة */
+        .card { background: white; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #eaeaea; }
         
         /* تصميم معرض الصور */
-        .slider-container { position: relative; width: 100%; height: 380px; background-color: #fff; overflow: hidden; }
+        .slider-container { position: relative; width: 100%; height: 400px; background-color: #fafafa; overflow: hidden; border-bottom: 1px solid #f0f0f0; }
         .slide { display: none; width: 100%; height: 100%; object-fit: contain; }
         .slide.active { display: block; }
         
         /* مؤشر رقم الصورة داخل المعرض */
-        .slide-counter { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.6); color: white; padding: 3px 8px; font-size: 12px; border-radius: 20px; z-index: 10; }
+        .slide-counter { position: absolute; top: 12px; left: 12px; background-color: rgba(0,0,0,0.7); color: white; padding: 4px 10px; font-size: 12px; border-radius: 20px; z-index: 10; font-weight: bold; }
 
         /* أزرار التنقل يمين ويسار */
-        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; font-size: 18px; border-radius: 50%; transition: 0.2s; z-index: 10; }
+        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; width: 36px; height: 36px; cursor: pointer; font-size: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; z-index: 10; }
         .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
-        .prev { right: 10px; }
-        .next { left: 10px; }
+        .prev { right: 12px; }
+        .next { left: 12px; }
 
-        .card-content { padding: 15px; text-align: right; }
-        .card-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; color: #111; }
-        .card-price { color: #2e7d32; font-weight: bold; font-size: 16px; margin-bottom: 12px; }
+        /* محتوى المنتج بتصميم عصري */
+        .card-content { padding: 20px; text-align: right; }
+        
+        .product-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .card-title { font-size: 19px; font-weight: bold; color: #1a1a1a; margin: 0; }
+        .card-price { color: #b8860b; font-weight: bold; font-size: 20px; background: #fcf8ec; padding: 4px 12px; border-radius: 8px; border: 1px solid #f3e5ab; }
         
         /* تنسيق اختيار المقاس */
-        .size-selector { margin-bottom: 15px; }
-        .size-selector label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #444; }
-        .size-selector select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; background-color: #fff; cursor: pointer; }
+        .size-selector { margin-top: 10px; }
+        .size-selector label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 8px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+        .size-selector select { width: 100%; padding: 12px; border: 1.5px solid #ddd; border-radius: 10px; font-size: 15px; background-color: #fafafa; color: #333; cursor: pointer; transition: 0.2s; }
+        .size-selector select:focus { border-color: #b8860b; outline: none; background-color: #fff; }
 
-        .btn { display: block; text-align: center; background-color: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 0 0 12px 12px; font-weight: bold; font-size: 15px; }
+        /* زر واتساب */
+        .btn { display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; background-color: #25d366; color: white; padding: 14px; text-decoration: none; font-weight: bold; font-size: 16px; transition: background-color 0.2s; }
         .btn:hover { background-color: #20ba5a; }
     </style>
 </head>
 <body>
 
-    <!-- رأس الصفحة مع الشعار المكبر داخل الإطار -->
+    <!-- رأس الصفحة مع الشعار -->
     <div class="header">
         <div class="logo-container">
             <img src="logo.png" alt="شعار المتجر" class="logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
@@ -62,7 +66,7 @@
     </div>
 
     <div class="grid">
-        <!-- المنتج مع المعرض والمقاس -->
+        <!-- المنتج مع التصميم الجديد الفاخر -->
         <div class="card">
             <div class="slider-container">
                 <div class="slide-counter"><span id="current-num">1</span> / <span id="total-num">2</span></div>
@@ -76,23 +80,28 @@
             </div>
 
             <div class="card-content">
-                <div class="card-title">تيشيرت رجالي أوفر سايز</div>
-                <div class="card-price">85 ريال</div>
+                <div class="product-header">
+                    <div class="card-title">تيشيرت رجالي أوفر سايز</div>
+                    <div class="card-price">85 ر.س</div>
+                </div>
                 
                 <!-- قائمة اختيار المقاس -->
                 <div class="size-selector">
-                    <label for="size-select">اختر المقاس:</label>
+                    <label for="size-select">اختر المقاس المناسب:</label>
                     <select id="size-select">
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L" selected>L</option>
-                        <option value="XL">XL</option>
-                        <option value="XXL">XXL</option>
+                        <option value="S">S - سمول</option>
+                        <option value="M">M - ميديم</option>
+                        <option value="L" selected>L - لارج</option>
+                        <option value="XL">XL - إكس لارج</option>
+                        <option value="XXL">XXL - دبل إكس لارج</option>
                     </select>
                 </div>
             </div>
 
-            <a href="#" id="whatsapp-btn" class="btn" onclick="sendOrder(event)">اطلب عبر واتساب</a>
+            <a href="#" id="whatsapp-btn" class="btn" onclick="sendOrder(event)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                اطلب عبر واتساب
+            </a>
         </div>
     </div>
 
