@@ -15,10 +15,8 @@
         .header h1 { color: #222; margin: 0 0 5px 0; font-size: 24px; letter-spacing: 1px; }
         .header p { color: #666; font-size: 14px; margin: 0; }
 
-        .promo-video-section { max-width: 1000px; margin: 0 auto 25px auto; background: #111; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.15); border: 1px solid #d4af37; }
-        .promo-video-container { position: relative; width: 100%; height: 380px; background: #000; }
-        .promo-video-container video { width: 100%; height: 100%; object-fit: cover; }
-        .video-caption { padding: 12px 20px; background: #111; color: #d4af37; text-align: center; font-size: 15px; font-weight: bold; letter-spacing: 0.5px; }
+        /* تنسيق قسم فيديو تيك توك */
+        .tiktok-section { max-width: 500px; margin: 0 auto 25px auto; text-align: center; background: #fff; padding: 10px; border-radius: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #d4af37; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
         .card { background: white; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
@@ -51,10 +49,6 @@
 
         .btn { display: block; text-align: center; background-color: #25d366; color: white; padding: 12px; text-decoration: none; border-radius: 0 0 12px 12px; font-weight: bold; font-size: 15px; }
         .btn:hover { background-color: #20ba5a; }
-
-        @media (min-width: 768px) {
-            .promo-video-container { height: 420px; }
-        }
     </style>
 </head>
 <body>
@@ -68,18 +62,17 @@
         <p>تصفح منتجاتنا واطلبها مباشرة عبر واتساب</p>
     </div>
 
-    <div class="promo-video-section">
-        <div class="promo-video-container">
-            <video autoplay muted loop playsinline controls>
-                <source src="157720.mp4" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو
-            </video>
-        </div>
-        <div class="video-caption">✨ اكتشف تشكيلة الأوفرسايز الفاخرة - Top Giving Collection</div>
+    <!-- فيديو تيك توك المضمن في أعلى الصفحة -->
+    <div class="tiktok-section">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@topgivingsa/video/7668357906089200916" data-video-id="7668357906089200916" style="max-width: 605px; min-width: 325px;" >
+            <section> </section>
+        </blockquote>
+        <script async src="https://www.tiktok.com/embed.js"></script>
     </div>
 
     <div class="grid">
         
+        <!-- المنتج الأول -->
         <div class="card">
             <div class="slider-container" id="slider-1">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">2</span></div>
@@ -116,6 +109,7 @@
             <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ريال', 1, 'size-1')">اطلب عبر واتساب</a>
         </div>
 
+        <!-- المنتج الثاني (Brave) -->
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
