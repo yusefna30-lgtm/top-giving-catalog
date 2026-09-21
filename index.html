@@ -17,8 +17,11 @@
         .slide { display: none; width: 100%; height: 100%; object-fit: contain; }
         .slide.active { display: block; }
         
+        /* مؤشر رقم الصورة داخل المعرض */
+        .slide-counter { position: absolute; top: 10px; left: 10px; background-color: rgba(0,0,0,0.6); color: white; padding: 3px 8px; font-size: 12px; border-radius: 20px; }
+
         /* أزرار التنقل يمين ويسار */
-        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; font-size: 18px; border-radius: 50%; transition: 0.2s; }
+        .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 15px; cursor: pointer; font-size: 18px; border-radius: 50%; transition: 0.2s; z-index: 10; }
         .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
         .prev { right: 10px; }
         .next { left: 10px; }
@@ -44,11 +47,17 @@
     </div>
 
     <div class="grid">
-        <!-- المنتج مع خيار المقاس -->
+        <!-- المنتج مع المعرض والمقاس -->
         <div class="card">
             <div class="slider-container">
+                <div class="slide-counter"><span id="current-num">1</span> / <span id="total-num">3</span></div>
+                
+                <!-- صور المنتج (الأمام، الخلف، الألوان المختلفة) -->
                 <img src="0051.png" class="slide active" alt="الوجه الأمامي">
                 <img src="new tshirt 01.png" class="slide" alt="الوجه الخلفي">
+                <!-- يمكنك إضافة صور الألوان الجديدة هنا بنفس الطريقة -->
+                <!-- <img src="color_black.png" class="slide" alt="اللون الأسود"> -->
+
                 <button class="prev" onclick="changeSlide(1)">&#10095;</button>
                 <button class="next" onclick="changeSlide(-1)">&#10094;</button>
             </div>
@@ -75,17 +84,18 @@
     </div>
 
     <script>
-        // تنقل الصور
+        // نظام معرض الصور التفاعلي
         let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        document.getElementById('total-num').innerText = slides.length;
+
         function changeSlide(direction) {
-            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
             currentSlide += direction;
             if (currentSlide >= slides.length) { currentSlide = 0; }
             if (currentSlide < 0) { currentSlide = slides.length - 1; }
-            slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                if (index === currentSlide) { slide.classList.add('active'); }
-            });
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-num').innerText = currentSlide + 1;
         }
 
         // إرسال الطلب مع المقاس المختار إلى واتساب
