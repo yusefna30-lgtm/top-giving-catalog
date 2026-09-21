@@ -7,10 +7,12 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9; margin: 0; padding: 20px; color: #333; }
         
-        /* رأس الصفحة والشعار بالحجم الأصلي المتناسق 90px */
+        /* رأس الصفحة والشعار */
         .header { text-align: center; margin-bottom: 25px; }
         .logo-container { width: 90px; height: 90px; margin: 0 auto 10px auto; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.15); border: 2px solid #d4af37; background-color: #000; display: flex; align-items: center; justify-content: center; }
-        .header img.logo { width: 100%; height: 100%; object-fit: contain; }
+        
+        /* تكبير الشعار نفسه ليملأ الإطار الدائري بوضوح */
+        .header img.logo { width: 130%; height: 130%; object-fit: cover; object-position: center; }
         
         .logo-fallback { font-size: 24px; font-weight: bold; color: #d4af37; letter-spacing: 2px; display: none; }
         
@@ -49,7 +51,7 @@
 </head>
 <body>
 
-    <!-- رأس الصفحة مع الشعار بالحجم 90px -->
+    <!-- رأس الصفحة مع الشعار المكبر داخل الإطار -->
     <div class="header">
         <div class="logo-container">
             <img src="logo.png" alt="شعار المتجر" class="logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';">
