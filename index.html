@@ -110,9 +110,9 @@
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
-                <img src="Tshirt001.png" class="slide active" alt="صورة 1">
-                <img src="Tshirt002.png" class="slide" alt="صورة 2">
-                <img src="Tshirt003.png" class="slide" alt="صورة 3">
+                <img src="Tshirt001.png" class="slide active" alt="أبيض">
+                <img src="Tshirt002.png" class="slide" alt="أسود">
+                <img src="Tshirt003.png" class="slide" alt="بيج">
                 <button class="prev" onclick="changeSlide(2, -1)">&#10095;</button>
                 <button class="next" onclick="changeSlide(2, 1)">&#10094;</button>
             </div>
@@ -121,16 +121,16 @@
                 <div class="card-title">تيشيرت رجالي أوفر سايز</div>
                 <div class="card-price">69 ريال</div>
 
-                <!-- أزرار اختيار اللون للمنتج الثاني (ترتبط بالصور الثلاث مباشرة) -->
+                <!-- أزرار اختيار اللون للمنتج الثاني (مضبوطة: أبيض، أسود، بيج) -->
                 <div class="color-selector">
                     <label>اختر اللون:</label>
                     <div class="color-options" id="colors-2">
-                        <!-- اللون الأول يرتبط بالصورة رقم 0 (Tshirt001.png) -->
+                        <!-- زر الأبيض يرتبط بالصورة الأولى Tshirt001.png -->
                         <button class="color-btn selected" style="background-color: #ffffff;" onclick="selectColor(2, 0, 'أبيض', this)" title="أبيض"></button>
-                        <!-- اللون الثاني يرتبط بالصورة رقم 1 (Tshirt002.png) -->
+                        <!-- زر الأسود يرتبط بالصورة الثانية Tshirt002.png -->
                         <button class="color-btn" style="background-color: #111111;" onclick="selectColor(2, 1, 'أسود', this)" title="أسود"></button>
-                        <!-- اللون الثالث يرتبط بالصورة رقم 2 (Tshirt003.png) - يمكنك تعديل الكود اللونى حسب لون التيشيرت الحقيقي -->
-                        <button class="color-btn" style="background-color: #8B4513;" onclick="selectColor(2, 2, 'بني', this)" title="بني"></button>
+                        <!-- زر البيج يرتبط بالصورة الثالثة Tshirt003.png -->
+                        <button class="color-btn" style="background-color: #d8c29d;" onclick="selectColor(2, 2, 'بيج', this)" title="بيج"></button>
                     </div>
                 </div>
                 
@@ -179,12 +179,11 @@
             showSlide(sliderId, currentSlides[sliderId] + direction);
         }
 
-        // اختيار اللون وتغيير الصورة وتحديد اسم اللون
+        // اختيار اللون وتغيير الصورة وتحديد اسم اللون بدقة
         function selectColor(sliderId, slideIndex, colorName, buttonElement) {
             showSlide(sliderId, slideIndex);
             selectedCardColors[sliderId] = colorName;
             
-            // تحديث شكل الأزرار المحددة ضمن هذا المنتج فقط
             const colorContainer = document.getElementById(`colors-${sliderId}`);
             colorContainer.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
             buttonElement.classList.add('selected');
