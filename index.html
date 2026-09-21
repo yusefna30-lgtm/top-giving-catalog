@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>كتالوج المنتجات - Top Giving</title>
     <style>
-        /* الثيم الداكن الفاخر والمنسق */
+        /* الثيم الداكن الفاخر */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             background-color: #0b0b0b; 
@@ -22,7 +22,7 @@
         .header h1 { color: #ffffff; margin: 0 0 2px 0; font-size: 18px; letter-spacing: 1px; font-weight: 700; }
         .header p { color: #999; font-size: 11px; margin: 0; }
 
-        /* شبكة المنتجات: منتجان في كل صف وبحجم صغير ومرتب */
+        /* شبكة المنتجات: منتجان في كل صف وبحجم مرتب بدون فراغات */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -31,24 +31,32 @@
             margin: auto; 
         }
         
-        .card { background: #151515; border: 1px solid #222; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-        .card:hover { border-color: #d4af37; }
+        .card { 
+            background: #151515; 
+            border: 1px solid #222; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4); 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            transition: 0.3s; 
+        }
         
-        /* إطارات صور صغيرة ومتناسقة مع تأثير الهالة المشعة عند اللمس */
+        /* إطار الصورة المضبوط والصغير مع تأثير الهالة الذهبية المشعة عند اللمس */
         .slider-container { 
             position: relative; 
             width: 100%; 
             height: 160px; 
             background-color: #111; 
             overflow: hidden; 
-            transition: box-shadow 0.4s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        /* تأثير الهالة المتوهجة عند تمرير الماوس أو اللمس */
         .slider-container:hover {
-            box-shadow: 0 0 20px 4px rgba(0, 229, 255, 0.6), inset 0 0 10px rgba(0, 229, 255, 0.3);
-            transform: scale(1.02);
+            box-shadow: 0 0 15px 3px rgba(212, 175, 55, 0.7);
+            border-color: #d4af37;
         }
 
         .slide { display: none; width: 100%; height: 100%; object-fit: contain; }
@@ -93,6 +101,7 @@
 
     <div class="grid">
         
+        <!-- المنتج الأول -->
         <div class="card">
             <div class="slider-container" id="slider-1">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">2</span></div>
@@ -129,6 +138,7 @@
             <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (الأول)', '85 ر.س', 1, 'size-1')">اطلب عبر واتساب</a>
         </div>
 
+        <!-- المنتج الثاني (Brave) -->
         <div class="card">
             <div class="slider-container" id="slider-2">
                 <div class="slide-counter"><span class="current-num">1</span> / <span class="total-num">3</span></div>
@@ -136,4 +146,89 @@
                 <img src="Tshirt002.png" class="slide" alt="رمادي">
                 <img src="Tshirt003.png" class="slide" alt="بيج">
                 
-                <button class="prev" onclick="
+                <button class="prev" onclick="changeSlide(2, -1)">&#10095;</button>
+                <button class="next" onclick="changeSlide(2, 1)">&#10094;</button>
+            </div>
+
+            <div class="card-content">
+                <div class="card-title">PERSIST - Brave</div>
+                <div class="card-price">69 ر.س</div>
+
+                <div class="color-selector">
+                    <label>اللون:</label>
+                    <div class="color-options" id="colors-2">
+                        <button class="color-btn selected" style="background-color: #1a1a1a;" onclick="selectColor(2, 0, 'أسود', this)" title="أسود"></button>
+                        <button class="color-btn" style="background-color: #B5B9BC;" onclick="selectColor(2, 1, 'رمادي', this)" title="رمادي"></button>
+                        <button class="color-btn" style="background-color: #C4B29E;" onclick="selectColor(2, 2, 'بيج', this)" title="بيج"></button>
+                    </div>
+                </div>
+                
+                <div class="size-selector">
+                    <label for="size-2">المقاس:</label>
+                    <select id="size-2">
+                        <option value="M">M</option>
+                        <option value="L" selected>L</option>
+                        <option value="XL">XL</option>
+                        <option value="2XL">2XL</option>
+                    </select>
+                </div>
+            </div>
+
+            <a href="#" class="btn" onclick="sendOrder(event, 'تيشيرت رجالي أوفر سايز (Brave)', '69 ر.س', 2, 'size-2')">اطلب عبر واتساب</a>
+        </div>
+
+    </div>
+
+    <script>
+        const currentSlides = { 1: 0, 2: 0 };
+        const selectedCardColors = { 1: 'أبيض', 2: 'أسود' };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.slider-container').forEach((slider, index) => {
+                const sliderId = index + 1;
+                const slides = slider.querySelectorAll('.slide');
+                slider.querySelector('.total-num').innerText = slides.length;
+            });
+        });
+
+        function showSlide(sliderId, index) {
+            const slider = document.getElementById(`slider-${sliderId}`);
+            const slides = slider.querySelectorAll('.slide');
+            slides[currentSlides[sliderId]].classList.remove('active');
+            
+            currentSlides[sliderId] = index;
+            if (currentSlides[sliderId] >= slides.length) currentSlides[sliderId] = 0;
+            if (currentSlides[sliderId] < 0) currentSlides[sliderId] = slides.length - 1;
+            
+            slides[currentSlides[sliderId]].classList.add('active');
+            slider.querySelector('.current-num').innerText = currentSlides[sliderId] + 1;
+        }
+
+        function changeSlide(sliderId, direction) {
+            showSlide(sliderId, currentSlides[sliderId] + direction);
+        }
+
+        function selectColor(sliderId, slideIndex, colorName, buttonElement) {
+            showSlide(sliderId, slideIndex);
+            selectedCardColors[sliderId] = colorName;
+            
+            const colorContainer = document.getElementById(`colors-${sliderId}`);
+            colorContainer.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
+            buttonElement.classList.add('selected');
+        }
+
+        let phone = "966560564719";
+        function sendOrder(event, productName, price, sliderId, sizeElementId) {
+            event.preventDefault();
+            const sizeSelect = document.getElementById(sizeElementId);
+            const selectedSize = sizeSelect.value;
+            const selectedColor = selectedCardColors[sliderId];
+
+            const message = `أريد طلب ${productName}\n- اللون: ${selectedColor}\n- المقاس: ${selectedSize}\n- السعر: ${price}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
